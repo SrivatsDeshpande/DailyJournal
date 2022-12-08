@@ -1,0 +1,29 @@
+body{
+    padding: 0px;
+}
+.navbar{
+    background-color: aqua;
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 5px 15px;
+
+}
+
+.links{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+}
+
+.links a{
+    margin: 0px 5px;
+}
+
+.search-items{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}

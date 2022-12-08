@@ -1,0 +1,27 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'styles/main.css' %}">
+<div class="navbar">
+    <div class="logo">
+        <a href="{% url 'home' %}">DailyJournal</a>
+        
+    </div>
+    <div class="search-items">
+       <form action="" method="POST">
+        {% csrf_token %}
+        <input type="text" name="searched" placeholder = "Search for entries" />
+        
+        
+       </form>
+    </div>
+    <div class="links">
+        <a href="{% url 'create-entry' %}">Log your entry</a>
+        <a href="#">View entry log</a>
+        {% if user.is_authenticated %}
+        <a href="{% url 'logout' %}">Hello, {{request.user.username}}</a>
+        {% else %}
+        <a href="{% url 'login' %}">Login/SignUp</a>
+        {% endif %}
+
+    </div>
+</div>
