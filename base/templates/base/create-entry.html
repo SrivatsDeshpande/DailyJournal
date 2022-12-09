@@ -1,12 +1,15 @@
-{% extends 'main.html' %}
+
 
 {% block content %}
 
-<h1>Welcome to logging your entry</h1>
+
 <form action="" method="POST">
     {% csrf_token %}
     
-    {{form.as_p}}
+    Title: <input type="text" name = "highlight" placeholder = "Enter Title..."><br>
+    Entry: <input type="text" name = "record" placeholder = "Enter your thoughts..."><br>
+    {{form.mood}}
+
     <input type="submit">
 </form>
 {% endblock content %}

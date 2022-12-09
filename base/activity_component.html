@@ -1,0 +1,23 @@
+
+{% extends 'main.html' %}
+
+{% block content %}
+<h1>Welcome to Activity Component</h1>
+
+{% if user.is_authenticated %}
+{% for record in searched_entries %}
+
+<h3>{{forloop.counter}} - {{record.created_at}}</h3>
+<h2>{{record.highlight}}</h2>
+<p>{{record.record}}</p>
+<hr>
+
+{% endfor %}
+
+
+
+{% else %}
+<a href="{% url 'login' %}">Please login</a>
+{% endif %}
+
+{% endblock %}

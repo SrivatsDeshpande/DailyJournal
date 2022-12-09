@@ -27,3 +27,7 @@ body{
     justify-content: space-between;
     flex-direction: row;
 }
+
+.date{
+    background-color: bisque;
+}

@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from .forms import *
 from .models import *
+from datetime import date
 # Create your views here.
 
 
@@ -16,19 +17,38 @@ def home(request):
         if request.method=='POST':
             searched = request.POST['searched']
             searched_entries = searched_entries.filter(Q(record__contains=searched)| Q(highlight__contains=searched))
+            context={'searched_entries':searched_entries.order_by('-created_at'), 'searched':searched}  
             
+        else:
+            context={'searched_entries':searched_entries}
         
-            
-        return render(request, 'base/home.html',{'searched_entries':searched_entries})
         
+        return render(request, 'base/home.html',context=context)
     else:
-        return render(request, 'base/home.html')
+        return render(request, 'base/home.html')       
+        
 
-
+def entryLog(request):
+    page = 'entry-log'
+    if request.user.is_authenticated:
+        searched_entries = Entry.objects.filter(host = request.user)
+        if request.method=='POST':
+            searched = request.POST['searched']
+            searched_entries = searched_entries.filter(Q(record__contains=searched)| Q(highlight__contains=searched))
+            context={'searched_entries':searched_entries.order_by('-created_at'), 'searched':searched,'page':page}  
+            
+        else:
+            context={'searched_entries':searched_entries,'page':page}
+        
+        
+        return render(request, 'base/home.html',context=context)
+    else:
+        return render(request, 'base/home.html')   
    
 
 @login_required(login_url='login')
 def createEntry(request):
+    page='create-entry'
     form = EntryForm()
     if request.method == 'POST':
         form = EntryForm(request)
@@ -43,7 +63,7 @@ def createEntry(request):
         
 
 
-    return render(request, 'base/create-entry.html', {'form':form})
+    return render(request, 'base/home.html', {'form':form,'page':page})
 
 
 def loginPage(request):
@@ -96,4 +116,23 @@ def logoutUser(request):
 
 
 def calendar(request):
-    return render(request, 'base/calendar_module.html')
+    page = 'calendar'
+    today = date.today()
+    today = today.strftime('%Y-%m-%d')
+    if request.user.is_authenticated:
+        selected_date = Entry.objects.filter(host = request.user)
+        if request.method=='POST':
+            pickdate = request.POST['pickdate']
+            selected_date = selected_date.filter(Q(created_at=pickdate))
+            return render(request, 'base/home.html',{'today':today, 'selected_date':selected_date, 'page':page})
+        else:
+            return render(request, 'base/calendar_module.html',{'today':today})
+    else:
+       
+        return redirect('login')
+
+    
+    
+    
+    
+    

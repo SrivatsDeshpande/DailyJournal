@@ -3,22 +3,58 @@
 
 {% block content %}
 <h1>Welcome to Daily Journal</h1>
-
 {% if user.is_authenticated %}
-{% for record in searched_entries %}
+<div class="container">
 
-{{record.record}}<br>
-{{record.highlight}}<br>
-@{{record.created_at}}
-{{record.host}}
-<hr>
+    <div class="notebook">
+        <div class="side-border">
 
-{% endfor %}
+        </div>
 
+        <div class="main-content">
+            <div class="header-bar">
+                <a href="{% url 'create-entry' %}">Create Entry</a>
+                
+                
+                <a href="{% url 'entry-log' %}">View Entry Log</a>
+                <a href="{% url 'calendar' %}">Search via date</a>
+                
+            </div>
+            
+            <div class="content-mid">
 
+                {% if page == 'entry-log' %}
+                <div class="search-items">
+                    <form action="" method="POST">
+                     {% csrf_token %}
+                     <input type="text" name="searched" placeholder = "Search for entries" />
+                     
+                     
+                    </form>
+                </div>
+                {% include 'base/entry_log.html' %}
 
-{% else %}
-<h3>Premium kharid warna no entry</h3>
+                {% elif page == 'create-entry' %}
+                {% include 'base/create-entry.html' %}
+
+                {% elif page == 'calendar' %}
+                {% include 'base/calendar_module.html' %}
+
+                {% else %}
+                <p>{{request.user.username}}'s Diary</p>
+
+                
+                {% endif %}
+
+            </div>
+            
+            
+           
+        </div>
+    </div>
 {% endif %}
+
+
+</div>
 
 {% endblock %}
