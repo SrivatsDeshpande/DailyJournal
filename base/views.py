@@ -27,7 +27,7 @@ def home(request):
     else:
         return render(request, 'base/home.html')       
         
-
+@login_required(login_url='login')
 def entryLog(request):
     page = 'entry-log'
     if request.user.is_authenticated:
@@ -115,7 +115,7 @@ def logoutUser(request):
     return redirect('home')
 
 
-def calendar(request):
+def calendarSearch(request):
     page = 'calendar'
     today = date.today()
     today = today.strftime('%Y-%m-%d')
@@ -126,7 +126,7 @@ def calendar(request):
             selected_date = selected_date.filter(Q(created_at=pickdate))
             return render(request, 'base/home.html',{'today':today, 'selected_date':selected_date, 'page':page})
         else:
-            return render(request, 'base/calendar_module.html',{'today':today})
+            return render(request, 'base/home.html',{'today':today,'page':page})
     else:
        
         return redirect('login')
