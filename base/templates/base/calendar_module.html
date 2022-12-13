@@ -8,7 +8,12 @@
 	<input type="submit">
 </form>
 
-{% for d in selected_date %}
-{{d.id}}
+{% for record in selected_date %}
+
+<h3>{{forloop.counter}} - {{record.created_at}}</h3>
+<h2><a href="{% url 'update-entry' record.id %}">{{record.highlight}}</a></h2>
+<p>{{record.record}}</p>
+<hr>
+
 {% endfor %}
 {% endblock %}
