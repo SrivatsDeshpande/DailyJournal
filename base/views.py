@@ -132,7 +132,48 @@ def calendarSearch(request):
         return redirect('login')
 
     
+
+@login_required(login_url = 'login')
+def updateUser(request):
+    
+    user = request.user
+    form = UserForm(instance = user)
+
+    if request.method=='POST':
+        form = UserForm(request.POST, instance = user)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    return render(request, 'base/update_user.html', {'form':form})
+
+
+@login_required(login_url = 'login')
+def updateEntry(request, pk):
+    page = 'update-entry'
+    entry = Entry.objects.get(id=pk)
+    form = EntryForm(instance = entry)
+    
+    if request.method=='POST':
+        form = EntryForm(request.POST, instance = entry)
+        if entry.host == request.user:
+            if form.is_valid():
+                form.save()
+                return redirect('entry-log')
+            # return render(request, 'base/home.html', {'form':form, 'page':page, 'entry':entry})
+        else:
+            return HttpResponse('You are not authorized to edit this...')
+    return render(request, 'base/home.html', {'form':form, 'page':page, 'entry':entry})
     
     
     
+def deleteEntry(request,pk):
     
+    entry = Entry.objects.get(id=pk)
+    if entry.host == request.user:
+        if request.method=='POST':
+            entry.delete()
+            return redirect('entry-log')
+    else:
+        return HttpResponse('Unauthorised User...')
+    return render(request, 'base/delete.html', {'obj':entry})
+

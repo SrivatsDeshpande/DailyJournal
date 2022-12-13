@@ -40,6 +40,9 @@
                 {% elif page == 'calendar' %}
                 {% include 'base/calendar_module.html' %}
 
+                {% elif page == 'update-entry' %}
+                {% include 'base/update_entry.html' %}
+
                 {% else %}
                 <p>{{request.user.username}}'s Diary</p>
 

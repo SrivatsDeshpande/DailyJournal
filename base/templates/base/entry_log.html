@@ -12,7 +12,7 @@
 {% for record in searched_entries %}
 
 <h3>{{forloop.counter}} - {{record.created_at}}</h3>
-<h2>{{record.highlight}}</h2>
+<h2><a href="{% url 'update-entry' record.id %}">{{record.highlight}}</a></h2>
 <p>{{record.record}}</p>
 <hr>
 
