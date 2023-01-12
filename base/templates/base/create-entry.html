@@ -1,15 +1,18 @@
 
-
+{% load static %}
+<link rel="stylesheet" href="{% static 'styles/main.css' %}">
 {% block content %}
 
-
-<form action="" method="POST">
-    {% csrf_token %}
+<div class="mid-content">
+    <form action="" method="POST">
+        {% csrf_token %}
+        
+        Title: <input type="text" name = "highlight" placeholder = "Enter Title..."><br>
+        Entry: <input type="text" name = "record" placeholder = "Enter your thoughts..."><br>
+        {{form.mood}}
     
-    Title: <input type="text" name = "highlight" placeholder = "Enter Title..."><br>
-    Entry: <input type="text" name = "record" placeholder = "Enter your thoughts..."><br>
-    {{form.mood}}
+        <input type="submit">
+    </form>
+</div>
 
-    <input type="submit">
-</form>
 {% endblock content %}

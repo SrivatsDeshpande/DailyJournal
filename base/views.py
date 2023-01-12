@@ -55,8 +55,7 @@ def createEntry(request):
         Entry.objects.create(
             host = request.user,
             record=request.POST.get('record'),
-            highlight=request.POST.get('highlight'),
-            mood = request.POST.get('mood')
+            highlight=request.POST.get('highlight')
             
         )
         return redirect('home')
@@ -107,6 +106,17 @@ def registerPage(request):
         else:
             messages.error(request, 'An error occurred during registration')
 
+    # if request.method=='POST':
+    #     form = MyUserCreationForm(request.POST)
+    #     User.objects.create(
+    #         name = request.POST.get('name'),
+    #         username = request.POST.get('username'),
+    #         email = request.POST.get('email'),
+    #         password = request.POST.get('password'),
+           
+    #     )
+
+
     return render(request, 'base/login_register.html', {'form': form}) 
 
 
@@ -123,8 +133,11 @@ def calendarSearch(request):
         selected_date = Entry.objects.filter(host = request.user)
         if request.method=='POST':
             pickdate = request.POST['pickdate']
-            selected_date = selected_date.filter(Q(created_at=pickdate))
-            return render(request, 'base/home.html',{'today':today, 'selected_date':selected_date, 'page':page})
+            if pickdate:
+                selected_date = selected_date.filter(Q(created_at=pickdate))
+                return render(request, 'base/home.html',{'today':today, 'selected_date':selected_date, 'page':page})
+            else:
+                return HttpResponse('Select date')
         else:
             return render(request, 'base/home.html',{'today':today,'page':page})
     else:
@@ -140,9 +153,9 @@ def updateUser(request):
     form = UserForm(instance = user)
 
     if request.method=='POST':
-        form = UserForm(request.POST, instance = user)
+        form = UserForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            form.save(request.POST)
             return redirect('home')
     return render(request, 'base/update_user.html', {'form':form})
 

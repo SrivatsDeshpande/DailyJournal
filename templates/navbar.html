@@ -6,6 +6,14 @@
         <a href="{% url 'home' %}">DailyJournal</a>
         
     </div>
+    <div class="search-items">
+        <form action="" method="POST">
+         {% csrf_token %}
+         <input type="text" name="searched" placeholder = "Search for entries" />
+         
+         
+        </form>
+    </div>
     
     
     
@@ -13,6 +21,7 @@
     <div class="links">
        
         {% if user.is_authenticated %}
+        
         <a href="{% url 'update-user' %}">Hello, {{request.user.username}}</a>
         <a href="{% url 'logout' %}">Logout</a>
         {% else %}
@@ -22,6 +31,6 @@
     </div>
 
     {% else %}
-    <a href="{% url 'login' %}">Login/SignUp</a>
+    <a href="{% url 'login' %}">Login</a>
     {% endif %}
 </div>

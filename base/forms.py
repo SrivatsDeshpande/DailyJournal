@@ -16,4 +16,4 @@ class UserForm(ModelForm):
 class EntryForm(ModelForm):
     class Meta:
         model = Entry
-        fields = ['record','highlight','mood']
+        fields = ['record','highlight']

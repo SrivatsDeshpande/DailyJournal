@@ -1,32 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap');
+
 body{
     padding: 0px;
     margin: 0px;
+    
 }
 html{
     padding: 0px;
     margin: 0px;
+    
+    
 }
+
 .navbar{
-    background-color: aqua;
-    
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin: 0px;
-    padding: 15px 15px;
-
+    padding: 20px 15px;
+    background-color: rgb(203, 189, 177);
 }
 
-.links{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    
-}
 
-.links a{
-    margin: 0px 5px;
-}
+
 
 .search-items{
     display: flex;
@@ -34,6 +29,193 @@ html{
     flex-direction: row;
 }
 
-.date{
+
+.container{
+    padding: 0px 50px 0px 0px;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    margin-left: 20px;
+
+    width: 1000px; /* Can be in percentage also. */
+  
+    
+    position: relative;
+
+}
+
+
+
+.header-bar{
+    display: flex;
+    flex-direction: column;
+}
+
+.content-mid{
+    background-color: rgb(226, 225, 144);
+    height: fit-content;
+    position: relative;
+    vertical-align: middle;
+    color: black;
+
+}
+
+#navbarSupportedContent{
+    margin-left: 75%;
+}
+
+#navbar-id{
+    height:80px !important;
+}
+
+.header-bar a{
+    padding: 10px 30px;
+    background-color: tan;
+    border: 1px solid black;
+    text-decoration: none;
+    color: white;
+}
+
+.header-bar{
+    margin-left: -10%;
+}
+
+.container-logreg{
     background-color: bisque;
+}
+
+.register-user{
+   margin: 0 25%;
+}
+
+
+
+.diary-name{
+    
+    width: 750px;
+    position: absolute;
+   
+    
+    text-align: center;
+    top: 35%;
+    background-color: white;
+    margin-left: 5px;
+    padding: 100px 0px;
+}
+
+.container-intro{
+    background-color: rgba(214,213,207,255);
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 50px 50px;
+    
+   
+    
+}
+.intro-page-main-container{
+    background-color: rgba(214,213,207,255);
+    height: fit-content;
+    padding-bottom: 50px;
+    font-family: 'Playfair Display', serif;
+}
+
+.container-intro-img img{
+    height: 600px;
+    margin-right: 50px;
+    box-shadow: 10px 10px 5px rgba(118,89,63,1);
+    
+}
+
+.container-intro-text{
+    font-size: 30px;
+    color:rgba(12, 44, 48, 0.824);
+    font-family: 'Playfair Display', serif;
+    
+}
+
+.benefits{
+    margin-left: 20px;
+}
+
+.benefits h3{
+    color: rgba(12, 44, 48,1);
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+}
+ /* Accordion */
+
+ .accordion {
+    background-color: rgba(118,89,63,0.6);
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 95%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 20px;
+    transition: 0.4s;
+    margin-left: 2%;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .active, .accordion:hover {
+    background-color: rgba(146,66,25,0.5);
+    color:rgba(9, 31, 34, 0.824);
+  }
+  
+  .accordion:after {
+    content: '\002B';
+    color: white;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+  }
+  
+  .active:after {
+    content: "\2212";
+  }
+  
+  .panel {
+    padding: 0 18px;
+    margin-left: 2%;
+    max-height: 0;
+    width: 95%;
+    font-size: 20px;
+    color: rgba(12, 44, 48, 0.824);
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    font-family: 'Playfair Display', serif;
+  }
+
+.benefits h3{
+    margin-left: 2%;
+}
+
+body::-webkit-scrollbar {
+    display: none; /* for Chrome, Safari, and Opera */
+}
+
+.join-now{
+    margin-left: 20px;
+    
+    font-size: 30px;
+    background-color: rgb(198, 186, 176);
+    width: fit-content;
+    margin: 20px auto 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.join-now a{
+    color: rgba(12, 44, 48,1);
+    text-decoration: none;
+}
+
+.join-now:hover{
+    background-color: rgba(146,66,25,0.5);
+    color: white;
 }

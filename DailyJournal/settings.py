@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-0(z9c-r6%+mdl0h(%$60izh$n5uq9=n_gfe&tu@-b5bnq&vlv^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+
 
 
 # Application definition
@@ -37,11 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'base.apps.BaseConfig'
+    'base.apps.BaseConfig',
+    'widget_tweaks'
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+  
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -130,3 +132,5 @@ MEDIA_ROOT = BASE_DIR / 'static/images'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+

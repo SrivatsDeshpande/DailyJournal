@@ -2,26 +2,26 @@
 {% extends 'main.html' %}
 
 {% block content %}
-<h1>Welcome to Daily Journal</h1>
+
 {% if user.is_authenticated %}
 <div class="container">
+    <div class="header-bar">
+           
+            
+        <a href="{% url 'create-entry' %}">Create Entry</a>
+        <a href="{% url 'entry-log' %}">View Entry Log</a>
+        <a href="{% url 'calendarSearch' %}">Search by date</a><br>
+        
+        
+         
+        
+    </div>
 
-    <div class="notebook">
-        <div class="side-border">
-
-        </div>
-
-        <div class="main-content">
-            <div class="header-bar">
-                <a href="{% url 'create-entry' %}">Create Entry</a>
-                
-                
-                <a href="{% url 'entry-log' %}">View Entry Log</a>
-                <a href="{% url 'calendarSearch' %}">Search via date</a>
-                
-            </div>
+    
+           
             
             <div class="content-mid">
+               
 
                 {% if page == 'entry-log' %}
                 <div class="search-items">
@@ -34,6 +34,10 @@
                 </div>
                 {% include 'base/entry_log.html' %}
 
+
+                {% elif searched %}
+                {% include 'base/entry_log.html' %}
+
                 {% elif page == 'create-entry' %}
                 {% include 'base/create-entry.html' %}
 
@@ -44,17 +48,21 @@
                 {% include 'base/update_entry.html' %}
 
                 {% else %}
-                <p>{{request.user.username}}'s Diary</p>
+                <div class="diary-name">
+                    {{ request.user.username }}'s Diary
+                </div>
 
                 
                 {% endif %}
 
             </div>
-            
+    {% else %}           
+            {% include 'base/intro-content.html' %}
+
+
             
            
-        </div>
-    </div>
+      
 {% endif %}
 
 

@@ -1,0 +1,65 @@
+
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'styles/main.css' %}">
+
+<body>
+    <div class="intro-page-main-container">
+        <div class="container-intro">
+            <div class="container-intro-img">
+               <img src="{% static 'images/journaling.jpeg' %}" >
+            </div>
+            <div class="container-intro-text">
+                <p>Journaling is the act of keeping a record of your personal 
+                    thoughts, feelings, insights, and more. It can be written, drawn, or
+                     typed. It can be on paper or on your computer. It's a simple, 
+                     low-cost way of improving your mental health. 
+                    It isn't easy to start journaling. It can feel like work, 
+                     and the expectation of writing every day may deter some people. But
+                      the positive effects of journaling can be felt even if it's not done daily. </p>
+             </div>
+        
+        </div>
+        <div class="benefits">
+            <h3>What are the benefits of journaling?</h3>
+            <button class="accordion">Achieve Goals</button>
+            <div class="panel">
+              <p>When you use your journal to write down your goals, you can keep better track of your intentions. This will help you stay accountable and serve as a reminder of what you need to do to accomplish them. Be sure to get specific.</p>
+            </div>
+
+            <button class="accordion">Track progress and growth</button>
+            <div class="panel">
+              <p>If you make journaling a regular habit, you can see how much progress or growth you've made by revisiting previous entries.</p>
+            </div>
+
+            <button class="accordion">Gain self-confidence</button>
+            <div class="panel">
+              <p>Seeing your progress can also give you a serious confidence boost. You can feel proud looking back at the challenges you faced and seeing how far you’ve come.</p>
+            </div>
+        </div>
+        <div class="join-now">
+            <a href="{% url 'register' %}">Start Journaling!</a>
+        </div>
+    </div>
+
+</body>
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight) {
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    } 
+  });
+}
+</script>
+
+
+
+{% endblock %}
