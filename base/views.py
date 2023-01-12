@@ -15,9 +15,29 @@ def home(request):
     if request.user.is_authenticated:
         searched_entries = Entry.objects.filter(host = request.user)
         if request.method=='POST':
-            searched = request.POST['searched']
-            searched_entries = searched_entries.filter(Q(record__contains=searched)| Q(highlight__contains=searched))
-            context={'searched_entries':searched_entries.order_by('-created_at'), 'searched':searched}  
+            if 'searched' in request.POST:
+                searched = request.POST['searched']
+                searched_entries = searched_entries.filter(Q(record__contains=searched)| Q(highlight__contains=searched))
+                context={'searched_entries':searched_entries.order_by('-created_at'), 'searched':searched}  
+            elif 'pickdate' in request.POST:
+                page = 'calendar'
+                today = date.today()
+                today = today.strftime('%Y-%m-%d')
+                if request.user.is_authenticated:
+                    selected_date = Entry.objects.filter(host = request.user)
+                    if request.method=='POST':
+                        pickdate = request.POST['pickdate']
+                        if pickdate:
+                            selected_date = selected_date.filter(Q(created_at=pickdate))
+                            return render(request, 'base/home.html',{'today':today, 'selected_date':selected_date, 'page':page})
+                        else:
+                            return HttpResponse('Select date')
+                    else:
+                        return render(request, 'base/home.html',{'today':today,'page':page})
+                else:
+                
+                    return redirect('login')
+
             
         else:
             context={'searched_entries':searched_entries}

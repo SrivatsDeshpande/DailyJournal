@@ -11,7 +11,11 @@
         <a href="{% url 'create-entry' %}">Create Entry</a>
         <a href="{% url 'entry-log' %}">View Entry Log</a>
         <a href="{% url 'calendarSearch' %}">Search by date</a><br>
-        
+        <form action="" method="POST" id="cal-seacrh">
+            {% csrf_token %}
+            <input type="date" name="pickdate" max={{today}} >
+            <input type="submit">
+        </form>
         
          
         
@@ -25,7 +29,7 @@
 
                 {% if page == 'entry-log' %}
                 <div class="search-items">
-                    <form action="" method="POST">
+                    <form action="" method="POST" id="text-search">
                      {% csrf_token %}
                      <input type="text" name="searched" placeholder = "Search for entries" />
                      

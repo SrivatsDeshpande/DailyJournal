@@ -2,11 +2,7 @@
 
 {% block content %}
 
-<form action="" method="POST">
-	{% csrf_token %}
-	<input type="date" name="pickdate" max={{today}} >
-	<input type="submit">
-</form>
+
 
 {% for record in selected_date %}
 
