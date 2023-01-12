@@ -10,7 +10,7 @@
             
         <a href="{% url 'create-entry' %}">Create Entry</a>
         <a href="{% url 'entry-log' %}">View Entry Log</a>
-        <a href="{% url 'calendarSearch' %}">Search by date</a><br>
+        <a href="#">Search by date</a><br>
         <form action="" method="POST" id="cal-seacrh">
             {% csrf_token %}
             <input type="date" name="pickdate" max={{today}} >

@@ -2,18 +2,21 @@
 {% extends 'main.html' %}
 
 {% block content %}
-<form class="form" action="" enctype="multipart/form-data">
+<form class="form" action="" method="POST" enctype="multipart/form-data">  
+    <!-- enctype="multipart/form-data" is for handling images in forms  -->
     {% csrf_token %}
+
     {% for field in form %}
-      <div class="form__group">
-          <label for="profile_pic">{{field.label}}</label>
-          {{field}}
-      </div>
+    <div class="form__group">
+      <label for="profile_pic">{{field.label}}</label>
+      {{field}}
+    </div>
+    {% endfor %}
 
-      {% endfor %}
 
-          <a class="btn btn--dark" href="{{request.META.HTTP_REFERER}}">Cancel</a>
-          <button class="btn btn--main" type="submit">Update</button>
-      </div>
+    <div class="form__action">
+      <a href="{% url 'home' %}">Cancel</a>
+      <button  type="submit">Update</button>
+    </div>
   </form>
 {% endblock %}
