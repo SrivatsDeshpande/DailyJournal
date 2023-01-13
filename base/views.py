@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
+from django.core.paginator import Paginator
 from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
@@ -52,13 +53,22 @@ def entryLog(request):
     page = 'entry-log'
     if request.user.is_authenticated:
         searched_entries = Entry.objects.filter(host = request.user)
+        paginator = Paginator(searched_entries, 4)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
         if request.method=='POST':
             searched = request.POST['searched']
             searched_entries = searched_entries.filter(Q(record__contains=searched)| Q(highlight__contains=searched))
-            context={'searched_entries':searched_entries.order_by('-created_at'), 'searched':searched,'page':page}  
+            paginator = Paginator(searched_entries, 4)
+            page_number = request.GET.get('page')
+            page_obj = paginator.get_page(page_number)
+            
+            context={'page_obj':page_obj, 'searched':searched,'page':page}  
+           
+
             
         else:
-            context={'searched_entries':searched_entries,'page':page}
+            context={'searched_entries':searched_entries,'page':page, 'page_obj':page_obj}
         
         
         return render(request, 'base/home.html',context=context)

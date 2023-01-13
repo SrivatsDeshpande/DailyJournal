@@ -1,0 +1,26 @@
+
+{% block content %}
+
+
+
+{% if searched %}
+<h3>Your search query for <i>'{{searched}}'</i> fetched the following records...</h3>
+
+{% endif %}
+
+{% for record in searched_entries %}
+
+<h3>{{forloop.counter}} - {{record.created_at}}</h3>
+<h2><a href="{% url 'update-entry' record.id %}">{{record.highlight}}</a></h2>
+<p>{{record.record}}</p>
+<hr>
+
+{% endfor %}
+
+
+
+
+
+
+
+{% endblock %}
