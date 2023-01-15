@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-0(z9c-r6%+mdl0h(%$60izh$n5uq9=n_gfe&tu@-b5bnq&vlv^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-
+ALLOWED_HOSTS = ['dailyjournalbysri.herokuapp.com','127.0.0.1']
 
 
 # Application definition
@@ -79,7 +79,8 @@ WSGI_APPLICATION = 'DailyJournal.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3'
+
     }
 }
 
